@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0
+          image: inventrack-mysql:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306

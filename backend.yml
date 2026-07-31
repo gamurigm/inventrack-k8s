@@ -41,11 +41,21 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ghcr.io/gamurigm/inventrack-backend:latest
-          imagePullPolicy: Always
+          image: inventrack-backend:1.0.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4000
               name: http
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
           envFrom:
             - configMapRef:
                 name: inventrack-config
